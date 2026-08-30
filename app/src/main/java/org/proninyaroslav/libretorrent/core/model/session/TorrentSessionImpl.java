@@ -132,8 +132,8 @@ public class TorrentSessionImpl extends SessionManager
     private static final int[] pieceSize = {0, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768};
     /* Possible torrent versions to create. Zero is hybrid */
     private static final int[] torrentVersions = {0, 1, 2};
-    private static final String PEER_FINGERPRINT = "Lr"; /* called peer id */
-    private static final String USER_AGENT = "LibreTorrent %s";
+    private static final String PEER_FINGERPRINT = "TR"; /* called peer id */
+    private static final String USER_AGENT = "Transmission/%s";
 
     private final InnerListener innerListener;
     private final ConcurrentLinkedQueue<TorrentEngineListener> listeners = new ConcurrentLinkedQueue<>();
