@@ -144,6 +144,15 @@ public class NavBarFragment extends Fragment {
         bottomNav = view.findViewById(R.id.bottom_navigation);
         if (navRail != null) {
             NavigationUI.setupWithNavController(navRail, navController);
+            if (Utils.isTvDevice(activity)) {
+                navRail.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
+                navRail.post(() -> {
+                    var selectedItem = navRail.findViewById(navRail.getSelectedItemId());
+                    if (selectedItem != null) {
+                        selectedItem.requestFocus();
+                    }
+                });
+            }
         }
         if (bottomNav != null) {
             NavigationUI.setupWithNavController(bottomNav, navController);

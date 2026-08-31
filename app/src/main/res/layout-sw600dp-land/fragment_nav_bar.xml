@@ -13,6 +13,8 @@
         android:baselineAligned="false"
         android:gravity="center"
         android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/screen_edge_padding"
+        android:paddingVertical="@dimen/screen_edge_padding"
         tools:context=".MainActivity">
 
         <com.google.android.material.navigationrail.NavigationRailView
@@ -25,8 +27,9 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_bar_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             app:navGraph="@navigation/nav_bar_graph" />
     </LinearLayout>
 

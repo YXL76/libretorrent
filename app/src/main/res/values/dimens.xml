@@ -9,6 +9,7 @@
 
     <dimen name="min_width_dialog">300dp</dimen>
     <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="screen_edge_padding">0dp</dimen>
     <dimen name="list_pane_width">@dimen/match_parent</dimen>
     <dimen name="details_pane_start_margin">0dp</dimen>
     <dimen name="list_item_one_line_height">56dp</dimen>

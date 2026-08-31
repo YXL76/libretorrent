@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_edge_padding">24dp</dimen>
+    <dimen name="list_pane_width">420dp</dimen>
+    <dimen name="details_pane_start_margin">16dp</dimen>
+    <dimen name="list_item_one_line_height">64dp</dimen>
+    <dimen name="list_item_two_lines_height">72dp</dimen>
+    <dimen name="list_item_three_lines_height">88dp</dimen>
+    <dimen name="search_bar_top_margin">16dp</dimen>
+    <dimen name="search_bar_max_width">372dp</dimen>
+</resources>

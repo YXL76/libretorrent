@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="App.Components.ListItem" parent="Widget.Material3.CardView.Outlined">
+        <item name="strokeColor">@color/tv_list_item_stroke</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+        <item name="cardForegroundColor">@color/tv_list_item_foreground</item>
+        <item name="checkedIcon">@null</item>
+    </style>
+
+    <style name="App.Components.ListItem.Label" parent="TextAppearance.Material3.TitleMedium" />
+
+    <style name="App.Components.ListItem.SupportingText" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+</resources>

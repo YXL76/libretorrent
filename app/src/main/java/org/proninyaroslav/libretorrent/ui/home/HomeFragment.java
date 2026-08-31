@@ -60,6 +60,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.slidingpanelayout.widget.SlidingPaneLayout;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.search.SearchView;
 import com.google.android.material.snackbar.Snackbar;
@@ -1224,6 +1225,11 @@ public class HomeFragment extends AbstractListDetailFragment {
         getAddTorrentFab().setImageResource(R.drawable.add_to_close_anim);
         startFabIconAnim();
 
+        if (Utils.isTvDevice(activity)) {
+            showTvFabMenu();
+            return;
+        }
+
         var popupWrapper = new ContextThemeWrapper(activity, R.style.App_Components_FloatingActionButton_Menu);
         var popup = new PopupMenu(popupWrapper, v, Gravity.TOP);
         popup.getMenuInflater().inflate(R.menu.home_fab, popup.getMenu());
@@ -1249,25 +1255,55 @@ public class HomeFragment extends AbstractListDetailFragment {
             }
         }
 
-        popup.setOnDismissListener((menu) -> {
-            getAddTorrentFab().setImageResource(R.drawable.close_to_add_anim);
-            startFabIconAnim();
-        });
+        popup.setOnDismissListener((menu) -> resetFabIcon());
 
         popup.setOnMenuItemClickListener((item) -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.create_torrent) {
-                createTorrentDialog();
-            } else if (itemId == R.id.add_link) {
-                addLinkDialog();
-            } else if (itemId == R.id.open_file) {
-                openTorrentFileDialog();
-            }
-
+            handleFabMenuItem(item.getItemId());
             return true;
         });
 
         popup.show();
+    }
+
+    private void showTvFabMenu() {
+        int[] itemIds = {
+                R.id.create_torrent,
+                R.id.add_link,
+                R.id.open_file
+        };
+        String[] itemLabels = {
+                getString(R.string.create_torrent),
+                getString(R.string.add_link),
+                getString(R.string.open_file)
+        };
+
+        var dialog = new MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.add_torrent_title)
+                .setItems(itemLabels, (d, which) -> handleFabMenuItem(itemIds[which]))
+                .create();
+        dialog.setOnDismissListener((d) -> resetFabIcon());
+        dialog.show();
+
+        var listView = dialog.getListView();
+        if (listView != null) {
+            listView.setSelection(0);
+            listView.requestFocus();
+        }
+    }
+
+    private void handleFabMenuItem(int itemId) {
+        if (itemId == R.id.create_torrent) {
+            createTorrentDialog();
+        } else if (itemId == R.id.add_link) {
+            addLinkDialog();
+        } else if (itemId == R.id.open_file) {
+            openTorrentFileDialog();
+        }
+    }
+
+    private void resetFabIcon() {
+        getAddTorrentFab().setImageResource(R.drawable.close_to_add_anim);
+        startFabIconAnim();
     }
 
     private void startFabIconAnim() {
